@@ -1,3 +1,20 @@
+<<<<<<< HEAD
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.cxx
+/.idea/
+
+=======
+>>>>>>> 8e301f55a1ec05b3f5ee34f2268ab3e8691dd5dc
 # Built application files
 *.apk
 *.aar
