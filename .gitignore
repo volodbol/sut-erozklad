@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .gradle
 /local.properties
 /.idea/caches
@@ -12,6 +13,8 @@
 .cxx
 /.idea/
 
+=======
+>>>>>>> 8e301f55a1ec05b3f5ee34f2268ab3e8691dd5dc
 # Built application files
 *.apk
 *.aar
