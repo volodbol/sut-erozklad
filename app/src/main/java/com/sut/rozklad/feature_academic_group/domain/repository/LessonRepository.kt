@@ -10,4 +10,6 @@ interface LessonRepository {
 
     suspend fun insertLessons(vararg lessons: Lesson)
 
+    suspend fun deleteAllLessons()
+
 }

@@ -6,16 +6,16 @@ import androidx.room.TypeConverters
 import com.sut.rozklad.feature_academic_group.domain.model.*
 
 @Database(
-    entities = [Lesson::class, Faculty::class, Course::class, Group::class],
+    entities = [Lesson::class],
     version = 1
 )
 @TypeConverters(LocalDateTypeConverter::class)
-abstract class ClassesDatabase : RoomDatabase() {
+abstract class ScheduleDatabase : RoomDatabase() {
 
     abstract val lessonDao: LessonDao
 
     companion object {
-        const val DATABASE_NAME = "classes_db"
+        const val DATABASE_NAME = "schedule_db"
     }
 
 }

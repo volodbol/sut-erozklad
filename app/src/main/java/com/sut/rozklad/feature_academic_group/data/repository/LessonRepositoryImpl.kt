@@ -17,5 +17,9 @@ class LessonRepositoryImpl(
     override suspend fun insertLessons(vararg lessons: Lesson) {
         lessonDao.insertLessons(lessons = lessons)
     }
-    
+
+    override suspend fun deleteAllLessons() {
+        lessonDao.deleteAllLessons()
+    }
+
 }
