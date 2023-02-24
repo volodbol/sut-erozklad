@@ -5,23 +5,22 @@ import com.sut.rozklad.feature_academic_group.domain.model.Faculty
 import com.sut.rozklad.feature_academic_group.domain.model.Group
 import com.sut.rozklad.feature_academic_group.domain.model.Lesson
 import com.sut.rozklad.feature_academic_group.domain.service.ERozkladService
+import kotlinx.coroutines.*
 import org.jsoup.Connection
 import org.jsoup.nodes.Node
 import org.jsoup.select.Elements
+import java.io.IOException
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.function.Predicate
-import javax.inject.Inject
-import javax.inject.Named
 import kotlin.streams.toList
 
-class ERozkladServiceImpl @Inject constructor(
-    @Named("groupJsoupClient")
-    private val connection: Connection
+class ERozkladServiceImpl(
+    private val connection: Connection,
 ) : ERozkladService {
 
-
+    @Throws(IOException::class)
     override suspend fun fetchFaculties(): List<Faculty> {
         val doc = connection.get()
         val faculties = doc.getElementById("timetableform-facultyid")
@@ -36,6 +35,7 @@ class ERozkladServiceImpl @Inject constructor(
             ?.toList() ?: Collections.emptyList()
     }
 
+    @Throws(IOException::class)
     override suspend fun fetchCSRFToken(): String {
         val doc = connection.get()
         val token = doc.getElementsByAttributeValue("name", CSRF_TOKEN_ID)
@@ -43,6 +43,7 @@ class ERozkladServiceImpl @Inject constructor(
         return token.attr("value")
     }
 
+    @Throws(IOException::class)
     override suspend fun fetchCourses(faculty: Faculty): List<Course> {
         val doc = connection
             .data(CSRF_TOKEN_ID, fetchCSRFToken())
@@ -60,6 +61,7 @@ class ERozkladServiceImpl @Inject constructor(
             ?.toList() ?: Collections.emptyList()
     }
 
+    @Throws(IOException::class)
     override suspend fun fetchGroups(faculty: Faculty, course: Course): List<Group> {
         val doc = connection
             .data(CSRF_TOKEN_ID, fetchCSRFToken())
@@ -78,6 +80,7 @@ class ERozkladServiceImpl @Inject constructor(
             ?.toList() ?: Collections.emptyList()
     }
 
+    @Throws(IOException::class)
     override suspend fun fetchLessons(
         faculty: Faculty,
         course: Course,
@@ -168,6 +171,5 @@ class ERozkladServiceImpl @Inject constructor(
         const val START_DATE_POST_VALUE = "TimeTableForm[dateStart]"
         const val END_DATE_POST_VALUE = "TimeTableForm[dateEnd]"
     }
-
 
 }
