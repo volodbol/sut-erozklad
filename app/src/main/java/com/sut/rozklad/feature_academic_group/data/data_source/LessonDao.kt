@@ -14,4 +14,7 @@ interface LessonDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertLessons(vararg lessons: Lesson)
 
+    @Query("DELETE FROM lessons WHERE id > 0")
+    suspend fun deleteAllLessons()
+
 }
